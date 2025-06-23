@@ -1,36 +1,25 @@
+// chai.js
+// This function calculates how much water, milk, tea leaves, and sugar is needed for a given number of chai cups
 function calculateChaiIngredients() {
-  // Prompt the user to enter the number of chai cups they want to make
-  const numberOfCupsInput = prompt("Karibu! How many cups of Chai Bora would you like to make?");
+  // Ask user how many cups of chai they want
+  const numberOfCups = parseInt(prompt("How many cups of chai do you want to make?"));
 
-  // Convert the input to a number
-  const numberOfCups = parseInt(3);
-
-  // Validate the input
+  // Check if input is a valid positive number
   if (isNaN(numberOfCups) || numberOfCups <= 0) {
-    console.log("Invalid input. Please enter a positive number for the cups of chai.");
-    return; // Exit the function if input is invalid
+    console.log("Please enter a valid number greater than 0.");
+    return;
   }
 
-  // Standard recipe for 1 cup of Chai
-  const waterPerCup = 200; // ml
-  const milkPerCup = 50; // ml
-  const teaLeavesPerCup = 1; // tablespoon
-  const sugarPerCup = 2; // teaspoons
+  // Ingredient calculations per cup
+  const water = numberOfCups * 200; // milliliters of water
+  const milk = numberOfCups * 50;   // milliliters of milk
+  const teaLeaves = numberOfCups;   // tablespoons of tea leaves
+  const sugar = numberOfCups * 2;   // teaspoons of sugar
 
-  // Calculate the required amount for each ingredient
-  const totalWater = numberOfCups * waterPerCup;
-  const totalMilk = numberOfCups * milkPerCup;
-  const totalTeaLeaves = numberOfCups * teaLeavesPerCup;
-  const totalSugar = numberOfCups * sugarPerCup;
-  }
-  // Print the results to the console
-  console.log(`To make {3} cups of Kenyan Chai, you will need:`);
-  console.log(`Water: {600} ml`);
-  console.log(`Milk: {150} ml`);
-  console.log(`Tea Leaves (Majani): {3} tablespoons`);
-  console.log(`Sugar (Sukari): {6} teaspoons`);
-  console.log("\nEnjoy your Chai Bora!");
-
-
-// Example of how to call the function:
-// calculateChaiIngredients();
+  // Output the required ingredient amounts
+  console.log(`To make ${numberOfCups} cups of chai:`);
+  console.log(`- Water: ${water} ml`);
+  console.log(`- Milk: ${milk} ml`);
+  console.log(`- Tea Leaves: ${teaLeaves} tbsp`);
+  console.log(`- Sugar: ${sugar} tsp`);
+}
