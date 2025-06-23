@@ -1,43 +1,24 @@
+// fee.js
+// Calculates mobile money transaction fees based on the amount sent
 function estimateTransactionFee() {
-  // 1. Prompt the user for input and convert to a number
-  const amountToSendString = prompt("Unatuma Ngapi? (KES):");
-  const amountToSend = parseFloat(amountToSendString);
+  // Ask user how much they want to send
+  const amountToSend = parseFloat(prompt("Enter amount to send (KES):"));
 
-  // Check if the input is a valid number
-  if (isNaN(amountToSend) || amountToSend < 0) {
-    console.log("Invalid amount. Please enter a valid positive number.");
-    return; // Exit the function if input is invalid
+  // Validate amount input
+  if (isNaN(amountToSend) || amountToSend <= 0) {
+    console.log("Please enter a valid amount greater than 0.");
+    return;
   }
 
-  // 2. Calculate the transaction fee
-  let transactionFee = amountToSend * 0.015; // 1.5% of the amount
+  // Fee logic: 1.5% of amount, min 10, max 70
+  const percentageFee = amountToSend * 0.015;
+  const fee = Math.max(10, Math.min(70, percentageFee));
+  const totalDebit = amountToSend + fee;
 
-  // Apply minimum fee
-  transactionFee = Math.max(transactionFee, 10); // KES 10 minimum fee
-
-  // Apply maximum fee
-  transactionFee = Math.min(transactionFee, 70); // KES 70 maximum fee
-
-  // 3. Calculate the total amount to be debited
-  const totalAmountDebited = amountToSend + transactionFee;
+  // Output fee and total amount details
+  console.log("Mobile Money Transaction Summary:");
+  console.log(`- Amount to Send: KES ${amountToSend}`);
+  console.log(`- Transaction Fee: KES ${fee}`);
+  console.log(`- Total Amount Debited: KES ${totalDebit}`);
+  console.log("Thank you for using mobile money!");
 }
-  // 4. Print the results to the console
-  console.log(`Sending KES {500}:`);
-  console.log(`Calculated Transaction Fee: KES {10}`);
-  console.log(`Total amount to be debited: KES {510}`);
-  console.log("\nSend Money Securely!");
-
-  console.log(`Sending KES {2000}:`);
-  console.log(`Calculated Transaction Fee: KES {30}`);
-  console.log(`Total amount to be debited: KES {2030}`);
-  console.log("\nSend Money Securely!");
-
-  console.log(`Sending KES {10000}:`);
-  console.log(`Calculated Transaction Fee: KES {70}`);
-  console.log(`Total amount to be debited: KES {10070}`);
-  console.log("\nSend Money Securely!");
-
-
-
-// Call the function to test
-estimateTransactionFee();
