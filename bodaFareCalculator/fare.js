@@ -1,30 +1,25 @@
+// fare.js
+// This function calculates boda boda fare using distance and fixed rates
 function calculateBodaFare() {
-  // Prompt the user for the distance of their trip
-  const distanceInput = prompt("Unafika wapi Mkubwa? Kilometer ngapi?:");
+  // Ask user for distance in kilometers
+  const distance = parseFloat(prompt("Enter distance in kilometers:"));
 
-  // Convert the input to a number
-  const distanceInKm = parseFloat(distanceInput);
-
-  // Validate the input
-  if (isNaN(distanceInKm) || distanceInKm < 0) {
-    console.log("Hiyo si namba mzuri. Tafadhali weka umbali sahihi kwa kilomita."); // "That's not a good number. Please enter a valid distance in kilometers."
-    return; // Exit the function if the input is invalid
+  // Check if input is valid
+  if (isNaN(distance) || distance <= 0) {
+    console.log("Please enter a valid distance greater than 0.");
+    return;
   }
 
-  // Fare Calculation Rules
-  const baseFare = 50; // KES
-  const chargePerKm = 15; // KES
+  // Fare calculation: base fare + charge per km
+  const baseFare = 50;        // flat fee in KES
+  const perKmRate = 15;       // charge per kilometer in KES
+  const distanceFare = distance * perKmRate;
+  const totalFare = baseFare + distanceFare;
 
-  // Calculate the total estimated fare
-  const totalFare = baseFare + (distanceInKm * chargePerKm);
+  // Show fare breakdown
+  console.log("Fare Details:");
+  console.log(`- Distance: ${distance} km`);
+  console.log(`- Base Fare: KES ${baseFare}`);
+  console.log(`- Distance Charge: KES ${distanceFare}`);
+  console.log(`- Total Fare: KES ${totalFare}`);
 }
-  // Print the result to the console
-  console.log(`Uko kwote? Io ni {5} km:`);
-  console.log(`Ukikalia Pikipiki: KES {50}`);
-  console.log(`Mpaka Uko: KES {75}`);
-  console.log(`Total: KES {125}`);
-  console.log("\nPanda Pikipiki!");
-
-
-// You can call the function to test it:
-// calculateBodaFare();
